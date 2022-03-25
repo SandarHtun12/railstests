@@ -1,0 +1,45 @@
+
+<p style="color: green"><%= notice %></p>
+<% if user_signed_in? %>
+<h1>Test List</h1>
+<table class="table table-striped table-hover table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Occuptation</th>
+      <th colspan="2"></th>
+    
+    </tr>
+  </thead>
+  <tbody>
+  <% @tests.each do |test| %>
+   <% if test.user == current_user %>
+
+    <tr> 
+    <td> 
+    <%= link_to test.first_name + ' ' + test.last_name, test %> 
+   </td>
+    
+    <td> <%= test.email %></td>
+    <td> <%= test.phone %></td>
+    <td> <%= test.occupation %></td>
+    <td> <%= test.user_id %></td>
+    <td><%= link_to "Delete", test, method: :Delete, data: { confirm: 'Are you sure?'},class:"btn btn-outline-danger" %></td> 
+    </tr>
+    <% end %>
+    <% end %>
+
+  </tbody>
+</table>
+
+<%= link_to "New test", new_test_path, class:"btn btn-secondary" %>
+
+<% else %>
+<h1>Hello World!!</h1>
+This is my first rails webpage.....
+<% end %>
+
+
